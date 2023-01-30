@@ -1,9 +1,14 @@
-import { getActiveTabURL, createElement, addChildElem, addClassNameToElem} from "./utils";
+import {
+  getActiveTabURL,
+  createElement,
+  addChildElem,
+  addClassNameToElem,
+} from "./utils";
 
 // adding a new bookmark row to the popup
 const addNewBookmark = (bookmarksElement, bookmark) => {
-  const bookmarkTitleElement = createElement("div")
-  const newBookmarkElement = createElement("div")
+  const bookmarkTitleElement = createElement("div");
+  const newBookmarkElement = createElement("div");
   const controlsElement = createElement("div");
 
   bookmarkTitleElement.textContent = bookmark.desc;
@@ -12,7 +17,7 @@ const addNewBookmark = (bookmarksElement, bookmark) => {
   addClassNameToElem(controlsElement, "bookmark-controls");
 
   newBookmarkElement.id = `bookmark-${bookmark.time}`;
-  addClassNameToElem(newBookmarkElement, "bookmark")
+  addClassNameToElem(newBookmarkElement, "bookmark");
   newBookmarkElement.setAttribute("timestamp", bookmark.time);
 
   setBookmarkAttributes("play", onPlay, controlsElement);
@@ -87,7 +92,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const urlParameters = new URLSearchParams(queryParameters);
 
   const currentVideo = urlParameters.get("v");
-u
+  u;
   if (activeTab.url.includes("youtube.com/watch") && currentVideo) {
     chrome.tabs.storage.get([currentVideo], (data) => {
       data[currentVideo] ? JSON.parse(data[currentVideo]) : [];
@@ -100,4 +105,3 @@ u
       '<div class="title">This page is not a youtube vide page</div>';
   }
 });
-
